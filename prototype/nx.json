@@ -1,0 +1,28 @@
+{
+  "npmScope": "prototype",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "prototype": {
+      "tags": []
+    },
+    "prototype-e2e": {
+      "tags": [],
+      "implicitDependencies": ["prototype"]
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    }
+  }
+}
