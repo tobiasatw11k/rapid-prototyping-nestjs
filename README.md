@@ -16,3 +16,9 @@ Ergänze die `prototype/package.json` um einen Eintrag zum Starten des Backends.
     }
 }
 ```
+
+## Bibliothek für geteilten Code zwischen Backend und Frontend einrichten
+
+```bash
+ng g @nrwl/workspace:lib shared
+```
