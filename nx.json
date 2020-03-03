@@ -12,20 +12,20 @@
   },
   "projects": {
     "workshop-prototype": {
-      "tags": []
+      "tags": ["scope:frontend"]
     },
     "workshop-prototype-e2e": {
       "tags": [],
       "implicitDependencies": ["workshop-prototype"]
     },
     "api": {
-      "tags": []
+      "tags": ["scope:backend"]
     },
     "api-interfaces": {
-      "tags": []
+      "tags": ["scope:lib"]
     },
     "shared": {
-      "tags": []
+      "tags": ["scope:lib"]
     }
   }
 }
