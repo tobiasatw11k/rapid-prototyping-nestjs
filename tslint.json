@@ -57,8 +57,24 @@
         "allow": [],
         "depConstraints": [
           {
-            "sourceTag": "*",
-            "onlyDependOnLibsWithTags": ["*"]
+            "sourceTag": "scope:lib",
+            "onlyDependOnLibsWithTags": [
+              "scope:lib"
+            ]
+          },
+          {
+            "sourceTag": "scope:frontend",
+            "onlyDependOnLibsWithTags": [
+              "scope:frontend",
+              "scope:lib"
+            ]
+          },
+          {
+            "sourceTag": "scope:backend",
+            "onlyDependOnLibsWithTags": [
+              "scope:backend",
+              "scope:lib"
+            ]
           }
         ]
       }
