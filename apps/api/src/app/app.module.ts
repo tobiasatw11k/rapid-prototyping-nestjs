@@ -8,6 +8,7 @@ import { Standort } from '../entities/Standort';
 import { Reperatur } from '../entities/Reperatur';
 import { Kfz } from '../entities/Kfz';
 import { ReperaturStatus } from '../entities/ReperaturStatus';
+import { DbService } from './db.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +16,7 @@ import { ReperaturStatus } from '../entities/ReperaturStatus';
     type: "mssql",
     host: "localhost",
     port: 1433,
-    username: "sa",
+    username: "workshop_prototype",
     password: "s4fePassword",
     database: "workshop_prototype",
     schema: "dbo",
@@ -29,6 +30,6 @@ import { ReperaturStatus } from '../entities/ReperaturStatus';
     ]
   })],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, DbService]
 })
 export class AppModule {}
