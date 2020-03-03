@@ -3,6 +3,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Niederlassung } from '../entities/Niederlassung';
+import { Standort } from '../entities/Standort';
+import { Reperatur } from '../entities/Reperatur';
+import { Kfz } from '../entities/Kfz';
+import { ReperaturStatus } from '../entities/ReperaturStatus';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +20,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     database: "workshop_prototype",
     schema: "dbo",
     synchronize: false,
-    entities: []
+    entities: [
+      Niederlassung,
+      Standort,
+      Kfz,
+      ReperaturStatus,
+      Reperatur,
+    ]
   })],
   controllers: [AppController],
   providers: [AppService]
