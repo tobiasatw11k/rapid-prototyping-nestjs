@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { Message } from '@tss/api-interfaces';
+import { INiederlassung, IReperaturStatus, Message } from '@tss/api-interfaces';
 
 import { AppService } from './app.service';
 import { Reperatur } from '../entities/Reperatur';
@@ -18,17 +18,20 @@ export class AppController {
   }
 
   @Get('niederlassung')
-  async getNiederlassungen(): Promise<Niederlassung[]> {
-    return this.dbService.loadAllNiederlassungen();
+  async getNiederlassungen(): Promise<INiederlassung[]> {
+    const fromDB = await this.dbService.loadAllNiederlassungen();
+    return fromDB.map(n => ({...n, standorte: n.standorts}));
   }
 
   @Get('niederlassung/:id')
-  async getNiederlassungBy(id: number): Promise<Niederlassung> {
-    return this.dbService.loadNiederlassungById(id);
+  async getNiederlassungBy(id: number): Promise<INiederlassung> {
+    const fromDB = await this.dbService.loadNiederlassungById(id)
+    return {...fromDB, standorte: fromDB.standorts};
   }
 
   @Get('reperatur-status')
-  async getReperaturen(): Promise<ReperaturStatus[]> {
-    return this.dbService.loadAllReperaturStatus();
+  async getReperaturen(): Promise<IReperaturStatus[]> {
+    const fromDB = await this.dbService.loadAllReperaturStatus();
+    return fromDB.map(it => (it.status as IReperaturStatus));
   }
 }
