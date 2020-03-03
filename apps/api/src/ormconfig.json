@@ -1,0 +1,14 @@
+[
+  {
+    "name": "default",
+    "type": "mssql",
+    "host": "localhost",
+    "port": 1433,
+    "username": "sa",
+    "password": "s4fePassword",
+    "database": "workshop_prototype",
+    "schema": "dbo",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]
