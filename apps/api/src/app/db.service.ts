@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
 import { Niederlassung } from '../entities/Niederlassung';
 import { ReperaturStatus } from '../entities/ReperaturStatus';
-import { Standort } from '../entities/Standort';
+import { Reperatur } from '../entities/Reperatur';
 
 @Injectable()
 export class DbService {
@@ -19,6 +19,11 @@ export class DbService {
 
   async loadAllReperaturStatus(): Promise<ReperaturStatus[]> {
     return this.connection.getRepository(ReperaturStatus).find();
+  }
+
+  async loadAllReperaturen(): Promise<Reperatur[]> {
+    return this.connection.getRepository(Reperatur)
+      .find({ relations: ['reperaturStatus', 'standort', 'kfz'] });
   }
 
 }
