@@ -13,13 +13,13 @@ import { DbService } from './db.service';
 @Module({
   imports: [TypeOrmModule.forRoot({
     name: "default",
-    type: "mssql",
+    type: "postgres",
     host: "localhost",
-    port: 1433,
-    username: "workshop_prototype",
+    port: 5432,
+    username: "postgres",
     password: "s4fePassword",
-    database: "workshop_prototype",
-    schema: "dbo",
+    database: "postgres",
+    schema: "public",
     synchronize: false,
     entities: [
       Niederlassung,
