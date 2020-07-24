@@ -11,6 +11,7 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
+    "db:generate": "typeorm-model-generator -h localhost -d postgres -u postgres -x s4fePassword -e postgres -o ./apps/api/src",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -47,7 +48,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "reflect-metadata": "^0.1.13",
     "@nestjs/typeorm": "^6.3.3",
-    "mssql": "^6.1.0",
+    "pg": "^8.3.0",
     "typeorm": "^0.2.24",
     "typeorm-model-generator": "^0.4.0"
   },
