@@ -3,5 +3,8 @@
   "rules": {
     "directive-selector": [true, "attribute", "tss", "camelCase"],
     "component-selector": [true, "element", "tss", "kebab-case"]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
   }
 }
