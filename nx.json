@@ -1,5 +1,5 @@
 {
-  "npmScope": "tmp",
+  "npmScope": "w11k",
   "affected": {
     "defaultBase": "master"
   },
@@ -33,9 +33,6 @@
       "tags": []
     },
     "api-interfaces": {
-      "tags": []
-    },
-    "shared": {
       "tags": []
     }
   }
