@@ -66,12 +66,11 @@ Vergebe den Workspace Namen `tmp` und den Application Namen `workshop-prototype`
 
 Sobald die Generierung abgeschlossen ist, verschiebe den Inhalt des Verzeichnisses `tmp` in die Project-Root.
 
-Ergänze die `prototype/package.json` den Eintrag `scripts` um ein Script zum Starten des Backends.
+Ergänze die `package.json` den Eintrag `scripts` um ein Script zum Starten des Backends.
 
 ```json
 {
   "scripts": {
-    "start": "ng serve prototype",
     "start:api": "ng serve api"
   }
 }
@@ -134,11 +133,14 @@ export const APPOINTMENTS: Appointment[] = [/*...*/];
 ```
 
 
-### Termine im Frontend anzeigen und bearbeiten
+### Termine im Frontend anzeigen
 
 Für die nächste Stufe möchten wir die Termine im Browser anzeigen. Dazu werden diese per Http-Client
 vom Server abgerufen. Der Abruf wird nicht von der anzuzeigenden Komponente selbst durchgeführt,
 sondern in einem Service gekapselt. Die Termine werden in Form einer Liste ausgegeben.
+
+
+### Termine im Frontend bearbeiten
 
 Der nächste Schritt ist eine Detailansicht zu den einzelnen Terminen mit den allen Informationen.
 In dieser sollen auch ein Formular zur Bearbeitung enthalten sein. Wir erweitern die Termine um eine
@@ -159,7 +161,7 @@ um Öffnungszeiten. Das Abschicken des Formulars soll nur möglich sein, wenn di
 Zeit geöffnet hat.
 
 
-### Öffnungszeiten im Backend prüfen
+### Öffnungszeiten im Frontend und Backend prüfen
 
 Nur das Absenden des Formulars zu blockieren ist nicht genug. Auch in unserem Server möchten wir
 verhindern, dass Termine angelegt werden, bei denen die Filiale nicht geöffnet ist. Die notwendige
