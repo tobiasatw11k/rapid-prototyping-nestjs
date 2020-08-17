@@ -10,7 +10,7 @@
       },
       "root": "apps/workshop-prototype",
       "sourceRoot": "apps/workshop-prototype/src",
-      "prefix": "tmp",
+      "prefix": "w11k",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -204,32 +204,6 @@
           "options": {
             "jestConfig": "libs/api-interfaces/jest.config.js",
             "tsConfig": "libs/api-interfaces/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared": {
-      "root": "libs/shared",
-      "sourceRoot": "libs/shared/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/shared/tsconfig.lib.json",
-              "libs/shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/jest.config.js",
-            "tsConfig": "libs/shared/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
