@@ -61,10 +61,10 @@ genau das tun.
 npx create-nx-workspace@latest
 ```
 
-Vergebe den Workspace Namen `tmp` und den Application Namen `workshop-prototype`. Wähle das Preset
+Vergebe den Workspace Namen `w11k` und den Application Namen `workshop-prototype`. Wähle das Preset
 `Angular-Nest` aus und die Style Extension Sass.
 
-Sobald die Generierung abgeschlossen ist, verschiebe den Inhalt des Verzeichnisses `tmp` in die Project-Root.
+Sobald die Generierung abgeschlossen ist, verschiebe den Inhalt des Verzeichnisses `w11k` in die Project-Root.
 
 Ergänze die `package.json` den Eintrag `scripts` um ein Script zum Starten des Backends.
 
