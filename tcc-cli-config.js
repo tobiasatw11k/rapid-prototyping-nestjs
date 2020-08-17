@@ -2,46 +2,47 @@ module.exports = {
     "merges": [
         [
             "master",
-            "v02/01-create-workspace"
-            /*
-            "01-init-workspace/solution"
-        ],
-        [
-            "01-init-workspace/solution",
-            "02-create-lib/solution",
-        ],
-        [
-            "02-create-lib/solution",
-            "03-constraints/solution",
-        ],
-        [
-            "03-constraints/solution",
-            "04-typeorm/solution",
-        ],
-        [
-            "04-typeorm/solution",
-            "05-generate-entity/solution",
-        ],
-        [
-            "05-generate-entity/solution",
-            "06-define-interfaces/solution",
-        ],
-        [
-            "06-define-interfaces/solution",
-            "07-backend-master-data/solution",
-        ],
-        [
-            "07-backend-master-data/solution",
-            "08-backend-repair-jobs/solution",
-        ],
-        [
-            "08-backend-repair-jobs/solution",
-            "09-database-migration/solution",
-        */
+            "v02/01-create-workspace",
         ],
         [
             "v02/01-create-workspace",
-            "v02/02-create-lib"
-        ]
+            "v02/02-create-lib",
+        ],
+        [
+            "v02/02-create-lib",
+            "v02/03-constraints",
+        ],
+        [
+            "v02/03-constraints",
+            "v02/04-backend-appointments",
+        ],
+        [
+            "v02/04-backend-appointment-list",
+            "v02/05-frontend-appointment-list",
+        ],
+        [
+            "v02/05-frontend-appointment-list",
+            "v02/06-frontend-appointment-details",
+        ],
+        [
+            "v02/06-frontend-appointment-details",
+            "v02/07-backend-appointment-details",
+        ],
+        [
+            "v02/07-backend-appointment-details",
+            "v02/08-frontend-working-hours",
+        ],
+        [
+            "v02/08-frontend-working-hours",
+            "v02/09-shared-working-hours",
+        ],
+        [
+            "v02/09-shared-working-hours",
+            "v02/10-tests",
+        ],
+        [
+            "v02/10-tests",
+            "v02/11-typeorm"
+        ],
     ],
 };
