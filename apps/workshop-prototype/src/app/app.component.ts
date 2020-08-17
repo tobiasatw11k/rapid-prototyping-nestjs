@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@tmp/api-interfaces';
+import { Message } from '@w11k/api-interfaces';
 
 @Component({
-  selector: 'tmp-root',
+  selector: 'w11k-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
