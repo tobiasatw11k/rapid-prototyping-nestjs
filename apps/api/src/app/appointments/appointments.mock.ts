@@ -2,6 +2,7 @@ import { Appointment } from '@w11k/api-interfaces';
 
 export const APPOINTMENTS: Appointment[] = [
   {
+    id: 1,
     assignment: '000-000-01',
     branch: 'Dortmund',
     status: 'Reperatur',
@@ -12,6 +13,7 @@ export const APPOINTMENTS: Appointment[] = [
     }
   },
   {
+    id: 2,
     assignment: '000-000-02',
     branch: 'Berlin',
     status: 'Abholung',

@@ -8,6 +8,7 @@ export interface Vehicle {
 }
 
 export interface Appointment {
+  id?: number;
   assignment: string;
   branch: string;
   vehicle: Vehicle;
