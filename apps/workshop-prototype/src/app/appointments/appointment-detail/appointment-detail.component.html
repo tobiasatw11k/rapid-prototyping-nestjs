@@ -22,6 +22,7 @@
       <option value="Berlin">Berlin</option>
     </select>&nbsp;
     <span class="error" *ngIf="formModel.branch.invalid">Please select a branch</span>
+    <span class="error" *ngIf="form.hasError('openingHours')">{{form.getError('openingHours')}}</span>
   </div>
   <div>
     <label>Status</label>&nbsp;
@@ -30,5 +31,5 @@
       <option value="Abholung">ready for pickup</option>
     </select>
   </div>
-  <div><button type="submit" [disabled]="form.invalid">save</button></div>
+  <div><button type="submit" >save</button></div>
 </form>

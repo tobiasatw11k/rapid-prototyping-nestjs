@@ -5,10 +5,10 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { Appointment } from '@w11k/api-interfaces';
+import { Appointment, OpeningHoursPerBranch } from '@w11k/api-interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-const timeRegExp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+import { OpeningHoursValidatorService } from '../opening-hours-validator.service';
+import { timeRegExp } from '@w11k/shared';
 
 @Component({
   selector: 'w11k-appointment-detail',
@@ -17,7 +17,9 @@ const timeRegExp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 })
 export class AppointmentDetailComponent implements OnChanges {
   @Output() appointmentSaved = new EventEmitter<Partial<Appointment>>();
-  @Input() appointment;
+  @Input() appointment: Appointment;
+  @Input() openingHoursPerBranch: OpeningHoursPerBranch;
+
   formModel: { [key in keyof Appointment]?: FormControl } = {
     vehicleOwner: new FormControl(null, Validators.required),
     vehicleRegNo: new FormControl(null, Validators.required),
@@ -30,9 +32,16 @@ export class AppointmentDetailComponent implements OnChanges {
     branch: new FormControl(null, Validators.required),
     assignment: new FormControl(null),
   };
-  form = new FormGroup(this.formModel);
 
-  constructor() {}
+  form = new FormGroup(this.formModel, {
+    asyncValidators: [
+      this.openingHoursValidatorService.openingHoursValidator('time', 'branch'),
+    ],
+  });
+
+  constructor(
+    private readonly openingHoursValidatorService: OpeningHoursValidatorService
+  ) {}
 
   ngOnChanges(): void {
     if (this.appointment != null) {

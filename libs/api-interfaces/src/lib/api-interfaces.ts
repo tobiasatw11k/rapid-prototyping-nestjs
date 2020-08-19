@@ -12,3 +12,12 @@ export interface Appointment {
   date: string;
   time: string;
 }
+
+export interface OpeningHours {
+  openingHoursStart: string;
+  openingHoursEnd: string;
+}
+
+export interface OpeningHoursPerBranch {
+  [key: string]: OpeningHours;
+}
