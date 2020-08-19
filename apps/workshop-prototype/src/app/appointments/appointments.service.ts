@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Appointment } from '@w11k/api-interfaces';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { first, map, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,17 @@ import { map, tap } from 'rxjs/operators';
 export class AppointmentsService {
 
   hasLoaded = false;
-  subject = new ReplaySubject<Appointment[]>(1);
+  subject = new BehaviorSubject<Appointment[]>([]);
 
   constructor(private readonly http: HttpClient) {
   }
 
   getAll(): Observable<Appointment[]> {
     if (this.hasLoaded === false) {
-      this.http.get<Appointment[]>('api/appointments').subscribe(result => this.subject.next(result));
+      this.http.get<Appointment[]>('api/appointments').subscribe(result => {
+        this.hasLoaded = true;
+        this.subject.next(result)
+      });
     }
     return this.subject.asObservable();
   }
@@ -29,5 +32,11 @@ export class AppointmentsService {
         if (a === undefined) throw new Error(`Could not find appointment with id ${id}`)
       })
     )
+  }
+
+  saveAppointment(id: number, appointment: Partial<Appointment>): Observable<Appointment> {
+    this.http.patch<Appointment>('api/appointments/' + id, appointment)
+      .subscribe(result => this.subject.next(this.subject.value.map(a => a.id === id ? result : a)));
+    return this.getById(id).pipe(take(1));
   }
 }

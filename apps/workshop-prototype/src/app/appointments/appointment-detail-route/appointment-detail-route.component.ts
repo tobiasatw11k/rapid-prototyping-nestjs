@@ -8,24 +8,30 @@ import { Appointment } from '@w11k/api-interfaces';
 @Component({
   selector: 'w11k-appointment-detail-route',
   templateUrl: './appointment-detail-route.component.html',
-  styleUrls: ['./appointment-detail-route.component.css']
+  styleUrls: ['./appointment-detail-route.component.css'],
 })
 export class AppointmentDetailRouteComponent implements OnInit {
-
   appointment$: Observable<Appointment>;
   actualId: number;
 
-  constructor(private readonly service: AppointmentsService, private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly service: AppointmentsService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.appointment$ = this.route.paramMap.pipe(
-      map(params => +params.get('id')),
-      tap(id => this.actualId = id),
-      switchMap(id => this.service.getById(id))
-    )
+      map((params) => +params.get('id')),
+      tap((id) => (this.actualId = id)),
+      switchMap((id) => this.service.getById(id))
+    );
   }
 
   saveAppointment($event: Partial<Appointment>) {
-    console.log("will be saved hopefully", $event);
+    console.log('saving appointment', $event);
+    this.service
+      .saveAppointment(this.actualId, $event)
+      .subscribe((_) => this.router.navigate(['..']));
   }
 }
