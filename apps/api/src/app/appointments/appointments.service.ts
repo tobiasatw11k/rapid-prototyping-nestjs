@@ -5,9 +5,9 @@ import { APPOINTMENTS } from './appointments.mock';
 
 @Injectable()
 export class AppointmentsService {
-  appointments$ = new BehaviorSubject<Appointment[]>(APPOINTMENTS);
+  private appointments: Appointment[] = APPOINTMENTS;
 
-  getAll(): Observable<Appointment[]> {
-    return this.appointments$.asObservable();
+  getAll(): Appointment[] {
+    return this.appointments;
   }
 }
