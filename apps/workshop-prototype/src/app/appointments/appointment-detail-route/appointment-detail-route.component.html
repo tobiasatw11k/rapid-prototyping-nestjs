@@ -1,1 +1,1 @@
-<w11k-appointment-detail [appointment]="appointment$ | async"></w11k-appointment-detail>
+<w11k-appointment-detail [appointment]="appointment$ | async" *ngIf="appointment$ | async" (appointmentSaved)="saveAppointment($event)"></w11k-appointment-detail>

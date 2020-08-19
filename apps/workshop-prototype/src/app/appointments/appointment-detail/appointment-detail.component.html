@@ -1,1 +1,21 @@
-<pre>{{appointment | json}}</pre>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div><label>Owner</label>&nbsp;<input type="text" [formControl]="formModel.vehicleOwner"></div>
+  <div><label>Date</label>&nbsp;<input type="date" [formControl]="formModel.date"></div>
+  <div><label>Time</label>&nbsp;<input type="time" [formControl]="formModel.time"></div>
+  <div><label>Registration No</label>&nbsp;<input type="text" [formControl]="formModel.vehicleRegNo"></div>
+  <div>
+    <label>Branch</label>&nbsp;
+    <select [formControl]="formModel.branch">
+      <option value="Dortmund">Dortmund</option>
+      <option value="Berlin">Berlin</option>
+    </select>
+  </div>
+  <div>
+    <label>Status</label>&nbsp;
+    <select [formControl]="formModel.status">
+      <option value="Reperatur">repair</option>
+      <option value="Abholung">ready for pickup</option>
+    </select>
+  </div>
+  <div><button type="submit">save</button></div>
+</form>
