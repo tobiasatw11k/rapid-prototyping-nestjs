@@ -2,16 +2,13 @@ export interface Message {
   message: string;
 }
 
-export interface Vehicle {
-  regNo: string;
-  owner: string;
-}
-
 export interface Appointment {
   id?: number;
   assignment: string;
   branch: string;
-  vehicle: Vehicle;
+  vehicleOwner: string;
+  vehicleRegNo: string;
   status: string;
+  date: string;
   time: string;
 }

@@ -6,21 +6,19 @@ export const APPOINTMENTS: Appointment[] = [
     assignment: '000-000-01',
     branch: 'Dortmund',
     status: 'Reperatur',
-    time: "2020-09-02T07:00+02:00",
-    vehicle: {
-      owner: "Sascha",
-      regNo: "ES-WW-01"
-    }
+    date: '2020-09-02',
+    time: "07:00",
+    vehicleOwner: "Sascha",
+    vehicleRegNo: "ES-WW-01"
   },
   {
     id: 2,
     assignment: '000-000-02',
     branch: 'Berlin',
     status: 'Abholung',
-    time: "2020-09-03T08:00+02:00",
-    vehicle: {
-      owner: "Tobi",
-      regNo: "B-WW-22"
-    }
+    date: '2020-09-03',
+    time: "08:00",
+    vehicleOwner: "Tobi",
+    vehicleRegNo: "B-WW-33"
   }
 ];
