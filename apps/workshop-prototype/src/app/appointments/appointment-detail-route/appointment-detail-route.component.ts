@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentsService } from '../appointments.service';
+import { AppointmentsService, OpeningHoursPerBranch } from '../appointments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { Appointment } from '@w11k/api-interfaces';
 export class AppointmentDetailRouteComponent implements OnInit {
   appointment$: Observable<Appointment>;
   actualId: number;
+  openingHoursPerBranch$: Observable<OpeningHoursPerBranch>;
 
   constructor(
     private readonly service: AppointmentsService,
@@ -26,6 +27,7 @@ export class AppointmentDetailRouteComponent implements OnInit {
       tap((id) => (this.actualId = id)),
       switchMap((id) => this.service.getById(id))
     );
+    this.openingHoursPerBranch$ = this.service.getOpeningHoursPerBranch();
   }
 
   saveAppointment($event: Partial<Appointment>) {
