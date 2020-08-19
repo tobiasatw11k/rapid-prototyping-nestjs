@@ -27,8 +27,8 @@ export class AppointmentDetailComponent implements OnChanges {
       Validators.pattern(timeRegExp),
     ]),
     status: new FormControl(null),
-    branch: new FormControl(null),
-    assignment: new FormControl(null, Validators.required),
+    branch: new FormControl(null, Validators.required),
+    assignment: new FormControl(null),
   };
   form = new FormGroup(this.formModel);
 
