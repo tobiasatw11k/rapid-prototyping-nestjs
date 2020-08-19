@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Appointment } from '@w11k/api-interfaces';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map, take } from 'rxjs/operators';
-
-export interface OpeningHours {
-  openingHoursStart: string;
-  openingHoursEnd: string;
-}
-
-export interface OpeningHoursPerBranch {
-  [key: string]: OpeningHours;
-}
+import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+import { Appointment, OpeningHoursPerBranch } from '@w11k/api-interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -20,18 +11,13 @@ export class AppointmentsService {
   hasLoaded = false;
   subject = new BehaviorSubject<Appointment[]>([]);
 
-  openingHoursPerBranchSubject = new BehaviorSubject<OpeningHoursPerBranch>({
-    Berlin: {
-      openingHoursStart: '08:00',
-      openingHoursEnd: '16:00',
-    },
-    Dortmund: {
-      openingHoursStart: '07:00',
-      openingHoursEnd: '20:00',
-    },
-  });
+  openingHoursPerBranchSubject = new BehaviorSubject<OpeningHoursPerBranch>(null);
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    this.http
+      .get<OpeningHoursPerBranch>('api/branches')
+      .subscribe((result) => this.openingHoursPerBranchSubject.next(result));
+  }
 
   getAll(): Observable<Appointment[]> {
     if (this.hasLoaded === false) {
@@ -45,7 +31,7 @@ export class AppointmentsService {
 
   getById(id: number): Observable<Appointment> {
     return this.getAll().pipe(
-      map((appointments) => appointments.find((a) => a.id === id)),
+      map((appointments) => appointments.find((a) => a.id === id))
     );
   }
 
@@ -53,14 +39,17 @@ export class AppointmentsService {
     id: number,
     appointment: Partial<Appointment>
   ): Observable<Appointment> {
-    this.http
+    return this.http
       .patch<Appointment>('api/appointments/' + id, appointment)
-      .subscribe((result) =>
-        this.subject.next(
-          this.subject.value.map((a) => (a.id === id ? result : a))
-        )
+      .pipe(
+        catchError(err => throwError(err.error.message)),
+        tap((result) => {
+          this.subject.next(
+            this.subject.value.map((a) => (a.id === id ? result : a))
+          )
+        }),
+        switchMap( () => this.getById(id).pipe(take(1)))
       );
-    return this.getById(id).pipe(take(1));
   }
 
   getOpeningHoursPerBranch(): Observable<OpeningHoursPerBranch> {

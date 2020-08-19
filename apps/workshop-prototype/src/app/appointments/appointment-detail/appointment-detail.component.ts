@@ -5,13 +5,10 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { Appointment } from '@w11k/api-interfaces';
+import { Appointment, OpeningHoursPerBranch } from '@w11k/api-interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OpeningHoursPerBranch } from '../appointments.service';
-import {
-  OpeningHoursValidatorService,
-  timeRegExp,
-} from '../opening-hours-validator.service';
+import { OpeningHoursValidatorService } from '../opening-hours-validator.service';
+import { timeRegExp } from '@w11k/shared';
 
 @Component({
   selector: 'w11k-appointment-detail',

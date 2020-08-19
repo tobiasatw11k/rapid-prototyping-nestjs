@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AppointmentsService, OpeningHoursPerBranch } from '../appointments.service';
+import { AppointmentsService } from '../appointments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Appointment } from '@w11k/api-interfaces';
+import { Appointment, OpeningHoursPerBranch } from '@w11k/api-interfaces';
 
 @Component({
   selector: 'w11k-appointment-detail-route',
@@ -34,6 +34,6 @@ export class AppointmentDetailRouteComponent implements OnInit {
     console.log('saving appointment', $event);
     this.service
       .saveAppointment(this.actualId, $event)
-      .subscribe((_) => this.router.navigate(['..']));
+      .subscribe((_) => this.router.navigate(['..']), err => alert(err));
   }
 }
