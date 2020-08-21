@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Appointment } from '@w11k/api-interfaces';
 import { HttpClient } from '@angular/common/http';
-import { map, take } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 
 export interface OpeningHours {
   openingHoursStart: string;
@@ -17,6 +17,7 @@ export interface OpeningHoursPerBranch {
   providedIn: 'root',
 })
 export class AppointmentsService {
+
   hasLoaded = false;
   subject = new BehaviorSubject<Appointment[]>([]);
 
@@ -49,18 +50,12 @@ export class AppointmentsService {
     );
   }
 
-  saveAppointment(
-    id: number,
-    appointment: Partial<Appointment>
-  ): Observable<Appointment> {
-    this.http
-      .patch<Appointment>('api/appointments/' + id, appointment)
-      .subscribe((result) =>
-        this.subject.next(
-          this.subject.value.map((a) => (a.id === id ? result : a))
-        )
+  saveAppointment(id: number, appointment: Partial<Appointment>): Observable<Appointment> {
+    return this.http.patch<Appointment>('api/appointments/' + id, appointment)
+      .pipe(
+        tap(result => this.subject.next(this.subject.value.map(a => a.id === id ? result : a))),
+        switchMap(() => this.getById(id).pipe(take(1)))
       );
-    return this.getById(id).pipe(take(1));
   }
 
   getOpeningHoursPerBranch(): Observable<OpeningHoursPerBranch> {
